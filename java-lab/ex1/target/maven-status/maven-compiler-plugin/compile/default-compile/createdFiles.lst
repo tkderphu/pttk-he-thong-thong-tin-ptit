@@ -1,0 +1,6 @@
+site\viosmash\controller\AuthServlet.class
+site\viosmash\dao\DBConnection.class
+site\viosmash\dao\UserDao.class
+site\viosmash\controller\UserServlet.class
+site\viosmash\dao\PostgreSQLConnection.class
+site\viosmash\models\User.class
