@@ -9,24 +9,24 @@ package site.viosmash.model;
  * @author FPT
  */
 public class Address {
-    private int id;
+    private String id;
     private String city;
     private String district;
     private String zipCode;
-    private int userId;
+    private String userId;
     
-    public Address(int id, String city, String district, String zipCode) {
+    public Address(String id, String city, String district, String zipCode) {
         this.id = id;
         this.city = city;
         this.district = district;
         this.zipCode = zipCode;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -53,6 +53,20 @@ public class Address {
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
     
+    
+    
+    @Override
+    public String toString() {
+        return district + ", " + city + ", " + zipCode;
+    }
     
 }

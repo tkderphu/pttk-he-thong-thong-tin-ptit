@@ -4,6 +4,7 @@
  */
 package site.viosmash.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import site.viosmash.model.Address;
 
@@ -14,14 +15,18 @@ import site.viosmash.model.Address;
 public class AddressDao {
     
     
+    private List<Address> TABLE = new ArrayList<>(List.of());
+    
     public Address save(Address addr) {
-        return null;
+        TABLE.add(addr);
+        return addr;
     }
     
     public List<Address> findAllByUserId(String userId) {
-        return null;
+        return TABLE.stream().filter(r -> r.getUserId().equals(userId))
+                .toList();
     }
     public void deleteById(String id) {
-        
+        TABLE.removeIf(r -> r.getId().equals(id));
     }
 }

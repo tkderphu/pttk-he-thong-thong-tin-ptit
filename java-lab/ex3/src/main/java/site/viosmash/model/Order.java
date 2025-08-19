@@ -6,6 +6,7 @@ package site.viosmash.model;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -70,6 +71,21 @@ public class Order {
     public void setItems(List<OrderItem> items) {
         this.items = items;
     }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+    
+    
    
+    public String products() {
+        return items.stream()
+                .map(r -> r.getBook().getName())
+                .collect(Collectors.joining(", "));
+    }
    
 }

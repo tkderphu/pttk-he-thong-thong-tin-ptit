@@ -4,6 +4,7 @@
  */
 package site.viosmash.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import site.viosmash.model.Order;
 
@@ -13,12 +14,13 @@ import site.viosmash.model.Order;
  */
 public class OrderDao {
     
-    public OrderDao() {
-        
-    }
+    private List<Order> orders = new ArrayList<>(List.of());
+    
+    
     
     public List<Order> findAllByUserId(String userId) {
-        return null;
+        return orders.stream().filter(r -> r.getUser().getId().equals(userId))
+                .toList();
     }
     
     public Order findById(String id) {
@@ -43,7 +45,8 @@ public class OrderDao {
         
     }
     public Order save(Order order) {
-        return null;
+        orders.add(order);
+        return order;
     }
     
 }

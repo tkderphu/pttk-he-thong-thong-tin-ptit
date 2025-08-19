@@ -27,6 +27,13 @@ public class AuthController extends HttpServlet {
     private UserDao userDao;
 
     @Override
+    public void init() throws ServletException {
+        this.userDao = new UserDao(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+    }
+    
+    
+
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String path = req.getPathInfo(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
         if (path.equals("/login")) {
@@ -50,7 +57,7 @@ public class AuthController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String path = req.getPathInfo();
         if (path.equals("/logout")) {
-            req.setAttribute("user", null);
+            req.getSession().setAttribute("user", null);
             resp.sendRedirect(req.getContextPath() + "/" + "index.jsp");
 
         }
