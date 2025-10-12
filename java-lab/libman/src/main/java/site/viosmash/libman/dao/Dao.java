@@ -24,9 +24,4 @@ public class Dao {
             e.printStackTrace();
         }
     }
-
-    public static void main(String[] args) {
-        Dao dao = new Dao();
-
-    }
 }

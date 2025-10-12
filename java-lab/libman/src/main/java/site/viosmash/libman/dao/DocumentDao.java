@@ -14,4 +14,7 @@ public class DocumentDao extends Dao{
     public Document[] getListByKeyword(String keyword) {
         return null;
     }
+    public Document getById(int documentId) {
+        return null;
+    }
 }

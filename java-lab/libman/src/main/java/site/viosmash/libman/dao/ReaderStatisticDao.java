@@ -13,7 +13,7 @@ import java.util.Date;
  * @author FPT
  */
 public class ReaderStatisticDao extends Dao{
-    public ReaderStatistic[] getList(Date start, Date end) {
+    public ReaderStatistic[] getList(String start, String end) {
         return null;
     }
 }
