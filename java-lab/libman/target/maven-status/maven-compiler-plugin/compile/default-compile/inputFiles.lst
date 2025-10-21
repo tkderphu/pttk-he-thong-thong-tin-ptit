@@ -5,6 +5,7 @@ D:\WorkSpaceD\project\he-thong-thong-tin-ptit\code\java-lab\libman\src\main\java
 D:\WorkSpaceD\project\he-thong-thong-tin-ptit\code\java-lab\libman\src\main\java\site\viosmash\libman\dao\ReaderStatisticDao.java
 D:\WorkSpaceD\project\he-thong-thong-tin-ptit\code\java-lab\libman\src\main\java\site\viosmash\libman\model\Item.java
 D:\WorkSpaceD\project\he-thong-thong-tin-ptit\code\java-lab\libman\src\main\java\site\viosmash\libman\model\LoanDetail.java
+D:\WorkSpaceD\project\he-thong-thong-tin-ptit\code\java-lab\libman\src\main\java\site\viosmash\libman\dao\MemberDao.java
 D:\WorkSpaceD\project\he-thong-thong-tin-ptit\code\java-lab\libman\src\main\java\site\viosmash\libman\model\Document.java
 D:\WorkSpaceD\project\he-thong-thong-tin-ptit\code\java-lab\libman\src\main\java\site\viosmash\libman\model\Librarian.java
 D:\WorkSpaceD\project\he-thong-thong-tin-ptit\code\java-lab\libman\src\main\java\site\viosmash\libman\model\LibraryCard.java
@@ -12,9 +13,9 @@ D:\WorkSpaceD\project\he-thong-thong-tin-ptit\code\java-lab\libman\src\main\java
 D:\WorkSpaceD\project\he-thong-thong-tin-ptit\code\java-lab\libman\src\main\java\site\viosmash\libman\dao\LoanDao.java
 D:\WorkSpaceD\project\he-thong-thong-tin-ptit\code\java-lab\libman\src\main\java\site\viosmash\libman\servlet\ReaderStatisticServlet.java
 D:\WorkSpaceD\project\he-thong-thong-tin-ptit\code\java-lab\libman\src\main\java\site\viosmash\libman\model\Member.java
-D:\WorkSpaceD\project\he-thong-thong-tin-ptit\code\java-lab\libman\src\main\java\site\viosmash\libman\servlet\LoanDetailServlet.java
+D:\WorkSpaceD\project\he-thong-thong-tin-ptit\code\java-lab\libman\src\main\java\site\viosmash\libman\servlet\AuthServlet.java
 D:\WorkSpaceD\project\he-thong-thong-tin-ptit\code\java-lab\libman\src\main\java\site\viosmash\libman\dao\Dao.java
 D:\WorkSpaceD\project\he-thong-thong-tin-ptit\code\java-lab\libman\src\main\java\site\viosmash\libman\dao\ItemDao.java
 D:\WorkSpaceD\project\he-thong-thong-tin-ptit\code\java-lab\libman\src\main\java\site\viosmash\libman\model\Manager.java
+D:\WorkSpaceD\project\he-thong-thong-tin-ptit\code\java-lab\libman\src\main\java\site\viosmash\libman\model\ReaderStatistic.java
 D:\WorkSpaceD\project\he-thong-thong-tin-ptit\code\java-lab\libman\src\main\java\site\viosmash\libman\servlet\ItemServlet.java
-D:\WorkSpaceD\project\he-thong-thong-tin-ptit\code\java-lab\libman\src\main\java\site\viosmash\libman\dao\ReaderDao.java

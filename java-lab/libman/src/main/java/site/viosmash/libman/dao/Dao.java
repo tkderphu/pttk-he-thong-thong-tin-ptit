@@ -19,9 +19,13 @@ public class Dao {
         try {
             Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
             this.conn = conn;
+            System.out.println("connect ok");
         } catch (SQLException e) {
             System.err.println("Failed to connect to database: " + e.getMessage());
             e.printStackTrace();
         }
+    }
+    public static void main(String[] args) {
+        Dao dao = new Dao();
     }
 }
