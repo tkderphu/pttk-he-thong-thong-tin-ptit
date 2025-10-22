@@ -14,34 +14,41 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Date;
 import java.util.Arrays;
 
 /**
  *
  * @author Nguyen Quang Phu
  */
-@WebServlet(urlPatterns = "/readerStatistics")
+@WebServlet(urlPatterns = "/readerStatistics/*")
 public class ReaderStatisticServlet extends HttpServlet {
+
     private ReaderStatisticDao readerStatisticDao;
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String path = req.getPathInfo();
-        if(path.equals("/loanCount")) {
-            String startDate = req.getParameter("startDate");
-            String endDate = req.getParameter("endDate");
-
-            ReaderStatistic[] statistics = readerStatisticDao.getList(startDate, endDate);
-
-            req.setAttribute("statistics", statistics);
-            req.setAttribute("totalLoanCount", Arrays.stream(statistics).mapToInt(r -> r.getCountLoan()).sum());
-
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/manager/ReaderLoanDetailView.jsp");
-            requestDispatcher.forward(req, resp);
-        }
-    }
 
     @Override
     public void init() throws ServletException {
-        readerStatisticDao = new ReaderStatisticDao();
+//       / super.init(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+        this.readerStatisticDao = new ReaderStatisticDao();
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String path = req.getPathInfo();
+//        
+//            RequestDispatcher requestDispatcher = req.getRequestDispatcher("login.jsp");
+//            requestDispatcher.forward(req, resp);
+        if (path.equals("/loanCount")) {
+            String startDate = req.getParameter("start");
+            String endDate = req.getParameter("end");
+//
+            ReaderStatistic[] statistics = readerStatisticDao.getList(Date.valueOf(startDate), Date.valueOf(endDate));
+//
+            req.setAttribute("statistics", statistics);
+            req.setAttribute("totalLoanCount", Arrays.stream(statistics).mapToInt(r -> r.getCountLoan()).sum());
+
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/manager/ReaderReportByLoanCountView.jsp");
+            requestDispatcher.forward(req, resp);
+        }
     }
 }

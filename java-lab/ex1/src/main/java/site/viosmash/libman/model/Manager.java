@@ -10,4 +10,5 @@ package site.viosmash.libman.model;
  */
 public class Manager extends Librarian{
     
+    
 }

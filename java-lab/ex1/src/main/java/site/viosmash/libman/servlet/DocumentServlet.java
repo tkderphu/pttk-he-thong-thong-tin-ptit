@@ -15,30 +15,29 @@ public class DocumentServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        this.documentDao  = new DocumentDao();
+        this.documentDao = new DocumentDao();
 //        super.init(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
-    
-    
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        
-   
-        
+
         String path = req.getPathInfo();
-        if(path != null && path.equals("/searching")) {
+         RequestDispatcher dispatcher
+                    = req.getRequestDispatcher("/reader/SearchingDocumentView.jsp");
+            dispatcher.forward(req, resp);
+        if (path != null && path.equals("/searching")) {
             String keyword = req.getParameter("keyword");
             Document[] documents
                     = this.documentDao.getListByKeyword(keyword);
-            
+
             req.setAttribute("documents", documents);
-            
-                 RequestDispatcher dispatcher
-                = req.getRequestDispatcher("/reader/SearchingDocumentView.jsp");
-        dispatcher.forward(req, resp);
+
+//            RequestDispatcher dispatcher
+//                    = req.getRequestDispatcher("/reader/SearchingDocumentView.jsp");
+//            dispatcher.forward(req, resp);
         }
-        
+
     }
 }

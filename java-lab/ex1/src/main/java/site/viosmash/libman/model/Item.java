@@ -12,7 +12,7 @@ public class Item {
     private int id;
     private String barcode;
     private String status;
-    private String position;
+    private String location;
     private Document document;
 
     public int getId() {
@@ -39,12 +39,12 @@ public class Item {
         this.status = status;
     }
 
-    public void setPosition(String position) {
-        this.position = position;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
-    public String getPosition() {
-        return position;
+    public String getLocation() {
+        return location;
     }
     
     

@@ -18,20 +18,19 @@ import java.io.IOException;
  *
  * @author Nguyen Quang Phu
  */
-@WebServlet(urlPatterns = "/loans")
+@WebServlet(urlPatterns = "/loans/*")
 public class LoanServlet extends HttpServlet {
     private LoanDao loanDao;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String pathInfo = req.getPathInfo();
-        if(pathInfo.equals("/readerLoanDetail")) {
-            String readerId = req.getParameter("readerId");
+        if(pathInfo != null && pathInfo.equals("/readerLoanDetail")) {
+            String readerId = (req.getParameter("readerId"));
             Loan[] loans = loanDao.getListByReaderId(readerId);
             req.setAttribute("loans", loans);
-            req.getRequestDispatcher("/manager/ReaderLoanDetailView.jsp")
-                    .forward(req, resp);
-        } else if (pathInfo.equals("/loanDetail")) {
+            req.getRequestDispatcher("/manager/ReaderLoanDetailView.jsp").forward(req, resp);
+        } else if (pathInfo != null && pathInfo.equals("/loanDetail")) {
             int loanId = Integer.parseInt(req.getParameter("loanId"));
             Loan loan = loanDao.getById(loanId);
             req.setAttribute("loan", loan);

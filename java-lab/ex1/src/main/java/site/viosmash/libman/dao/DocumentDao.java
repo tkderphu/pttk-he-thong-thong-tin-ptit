@@ -1,77 +1,63 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package site.viosmash.libman.dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import site.viosmash.libman.model.Document;
-
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author Nguyen Quang Phu
- */
 public class DocumentDao extends Dao {
 
-      public DocumentDao() {
-        super(); // calls Dao() constructor → automatically sets conn
+    public DocumentDao() {
+        super();
     }
 
-    
     public Document[] getListByKeyword(String keyword) {
-        String sql = "SELECT id, title, description, author, publisher, category "
-                + "FROM tblDocument WHERE title LIKE ?";
-        try (PreparedStatement statement = conn.prepareStatement(sql)) {
-            statement.setString(1, "%" + keyword + "%");
-            try (ResultSet resultSet = statement.executeQuery()) {
-                List<Document> documents = new ArrayList<>();
+        // Use UPPER() to ignore case
+        String sql = "SELECT id, title, description, author, publisher, category " +
+                     "FROM tblDocument " +
+                     "WHERE UPPER(title) LIKE UPPER(?) OR UPPER(description) LIKE UPPER(?)";
+        List<Document> documents = new ArrayList<>();
 
-                while (resultSet.next()) {
-                    Document document = new Document();
-                    document.setId(resultSet.getInt("id"));
-                    document.setTitle(resultSet.getString("title"));
-                    document.setDescription(resultSet.getString("description"));
-                    document.setAuthor(resultSet.getString("author"));
-                    document.setPublisher(resultSet.getString("publisher"));
-                    document.setCategory(resultSet.getString("category"));
-                    documents.add(document);
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            String param = "%" + keyword + "%";
+            ps.setString(1, param);
+            ps.setString(2, param);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    documents.add(map(rs));
                 }
-
-                return documents.toArray(new Document[0]);
             }
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving documents by keyword: " + keyword, e);
         }
+
+        return documents.toArray(new Document[0]);
     }
 
     public Document getById(int documentId) {
         String sql = "SELECT id, title, description, author, publisher, category FROM tblDocument WHERE id = ?";
-        try {
-            PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setInt(1, documentId);
-            ResultSet resultSet = statement.executeQuery();
-
-            if (resultSet.next()) {
-                Document document = new Document();
-                document.setId(resultSet.getInt("id"));
-                document.setTitle(resultSet.getString("title"));
-                document.setDescription(resultSet.getString("description"));
-                document.setAuthor(resultSet.getString("author"));
-                document.setPublisher(resultSet.getString("publisher"));
-                document.setCategory(resultSet.getString("category"));
-                return document;
-            } else {
-                return null;
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, documentId);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return map(rs);
+                }
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Error retrieving document with ID: " + documentId, e);
         }
+        return null;
+    }
+
+    private Document map(ResultSet rs) throws SQLException {
+        Document d = new Document();
+        d.setId(rs.getInt("id"));
+        d.setTitle(rs.getString("title"));
+        d.setDescription(rs.getString("description"));
+        d.setAuthor(rs.getString("author"));
+        d.setPublisher(rs.getString("publisher"));
+        d.setCategory(rs.getString("category"));
+        return d;
     }
 }

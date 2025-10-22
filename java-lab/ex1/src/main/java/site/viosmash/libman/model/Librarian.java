@@ -9,5 +9,7 @@ package site.viosmash.libman.model;
  * @author Nguyen Quang Phu
  */
 public class Librarian extends Member{
+
+    
     
 }
