@@ -8,17 +8,15 @@
     </head>
     <body>
         <%
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/pttk?useSSL=false&serverTimezone=UTC",
-                    "root",
-                    "root"
-            );
-            
-            if(conn != null) {
-                %>
-                <h1>fuck</h1>
-                <%
+            Object role = request.getSession().getAttribute("role");
+            if (role == null) {
+                response.sendRedirect("login.jsp");
+            } else {
+                if (role.equals("MANAGER")) {
+                    response.sendRedirect("/ex1/manager/ManagerHomeView.jsp");
+                } else if (role.equals("READER")) {
+                    response.sendRedirect("/ex1/reader/ReaderHomeView.jsp");
+                }
             }
         %>
     </body>

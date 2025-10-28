@@ -14,15 +14,18 @@ public class Dao {
     private static final String USER = "root";
     private static final String PASSWORD = "root";
 
-
-   public Dao() {
+    public Dao() {
         try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
             conn = DriverManager.getConnection(URL, USER, PASSWORD);
             System.out.println("DB connected");
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new RuntimeException("Failed to connect to DB", e);
         }
     }
-    
-    
+
+    public static void main(String[] args) {
+        new Dao();
+    }
 }

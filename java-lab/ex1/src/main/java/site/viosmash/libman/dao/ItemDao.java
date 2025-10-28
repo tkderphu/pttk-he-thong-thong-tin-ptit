@@ -13,10 +13,10 @@ public class ItemDao extends Dao {
     }
 
     public Item[] getListByDocumentId(int documentId) {
-        String sql = "SELECT i.id AS item_id, i.barcode, i.status, i.position, "
+        String sql = "SELECT i.id AS item_id, i.barcode, i.status, i.location, "
                    + "d.id AS doc_id, d.title, d.description, d.author, d.publisher, d.category "
                    + "FROM tblItem i "
-                   + "JOIN tblDocument d ON i.document_id = d.id "
+                   + "JOIN tblDocument d ON i.tblDocumentid = d.id "
                    + "WHERE d.id = ?";
 
         List<Item> items = new ArrayList<>();
@@ -40,7 +40,7 @@ public class ItemDao extends Dao {
         i.setId(rs.getInt("item_id"));
         i.setBarcode(rs.getString("barcode"));
         i.setStatus(rs.getString("status"));
-        i.setLocation(rs.getString("position"));
+        i.setLocation(rs.getString("location"));
 
         Document d = new Document();
         d.setId(rs.getInt("doc_id"));

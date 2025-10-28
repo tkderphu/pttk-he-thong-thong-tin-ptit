@@ -1,93 +1,147 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="site.viosmash.libman.model.Document" %>
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
+    <meta charset="UTF-8">
     <title>Tìm kiếm tài liệu</title>
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: "Times New Roman", serif;
+            font-family: "Segoe UI", "Times New Roman", serif;
+            background: linear-gradient(135deg, #f3f4f6, #e0e7ff);
+            margin: 0;
             display: flex;
             justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #fff;
-            margin: 0;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 40px 0;
         }
 
         .container {
-            border: 1px solid #000;
-            padding: 20px 30px;
-            width: 800px;
-            text-align: center;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            width: 900px;
+            padding: 40px 50px;
+            animation: fadeIn 0.5s ease;
         }
 
         h2 {
+            color: #1e3a8a;
             font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        .search-box {
-            margin-bottom: 20px;
-        }
-
-        input[type="text"] {
-            padding: 5px;
-            width: 200px;
-        }
-
-        .btn {
-            background-color: #f0f0f0;
-            border: 1px solid #999;
-            padding: 5px 15px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-
-        .btn:hover {
-            background-color: #e0e0e0;
-        }
-
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            margin-top: 10px;
-        }
-
-        th, td {
-            border: 1px solid #000;
-            padding: 6px;
             text-align: center;
-        }
-
-        th {
-            background-color: #f8f8f8;
-            font-weight: bold;
+            margin-bottom: 30px;
         }
 
         .top-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            background-color: #1e40af;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+        }
+
+        .search-box {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        input[type="text"] {
+            padding: 8px 12px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            border: 1px solid #e5e7eb;
+            padding: 10px 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            font-weight: bold;
+            color: #1e293b;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9fafb;
+        }
+
+        tr:hover {
+            background-color: #e0e7ff;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                width: 90%;
+                padding: 20px;
+            }
+            input[type="text"] {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="top-bar">
-            <form action="reader_home.jsp" method="get" style="margin: 0;">
-                <button type="submit" class="btn">Quay lại</button>
+            <form action="/ex1/reader/ReaderHomeView.jsp" method="get" style="margin:0;">
+                <button type="submit" class="btn">⬅ Quay lại</button>
             </form>
             <h2>Tìm kiếm tài liệu</h2>
-            <div style="width: 70px;"></div>
+            <div style="width: 100px;"></div>
         </div>
 
         <!-- Search form -->
         <form action="/ex1/documents/searching" method="get" class="search-box">
-            <input type="text" name="keyword" placeholder="Nhập keyword"
-                   value="<%= request.getParameter("keyword") != null ? request.getParameter("keyword") : "" %>" />
-            <button type="submit" class="btn">Tìm kiếm</button>
+            <input type="text" name="keyword" placeholder="Nhập từ khóa tài liệu..."
+                   value="<%= request.getParameter("keyword") != null ? request.getParameter("keyword") : "" %>">
+            <button type="submit" class="btn">🔍 Tìm kiếm</button>
         </form>
 
         <%
@@ -96,7 +150,7 @@
             Object obj = request.getAttribute("documents");
 
             if (obj != null) {
-             documents = (Document[]) obj;
+                documents = (Document[]) obj;
             }
         %>
 
@@ -109,35 +163,37 @@
                 <th>Thể loại</th>
                 <th>Hành động</th>
             </tr>
-               
+
             <%
                 if (documents != null && documents.length > 0) {
                     for (Document d : documents) {
             %>
-                        <tr>
-                            <td><%= d.getId() %></td>
-                            <td><%= d.getTitle() %></td>
-                            <td><%= d.getAuthor() %></td>
-                            <td><%= d.getPublisher() %></td>
-                            <td><%= d.getCategory() %></td>
-                            <td>
-                                <form action="/ex1/items/getListByDocumentId" method="get" style="margin:0;">
-                                    <input type="hidden" name="documentId" value="<%= d.getId() %>" />
-                                    <button type="submit" class="btn">Chi tiết</button>
-                                </form>
-                            </td>
-                        </tr>
+            <tr>
+                <td><%= d.getId() %></td>
+                <td><%= d.getTitle() %></td>
+                <td><%= d.getAuthor() %></td>
+                <td><%= d.getPublisher() %></td>
+                <td><%= d.getCategory() %></td>
+                <td>
+                    <form action="/ex1/items/getListByDocumentId" method="get" style="margin:0;">
+                        <input type="hidden" name="documentId" value="<%= d.getId() %>">
+                        <button type="submit" class="btn">📘 Chi tiết</button>
+                    </form>
+                </td>
+            </tr>
             <%
                     }
                 } else if (keyword != null && (documents == null || documents.length == 0)) {
             %>
-                    <tr>
-                        <td colspan="6">Không tìm thấy tài liệu nào</td>
-                    </tr>
+            <tr>
+                <td colspan="6" style="color:#6b7280;">Không tìm thấy tài liệu nào</td>
+            </tr>
             <%
                 }
             %>
         </table>
+
+        <footer>Thư viện điện tử - 2025</footer>
     </div>
 </body>
 </html>

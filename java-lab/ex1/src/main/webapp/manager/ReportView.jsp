@@ -53,7 +53,7 @@
 </head>
 <body>
     <div class="container">
-        <form action="managerHome.jsp" method="get">
+        <form action="/ex1/ManagerHomeView.jsp" method="get">
             <button type="submit" class="btn back">Quay lại</button>
         </form>
 

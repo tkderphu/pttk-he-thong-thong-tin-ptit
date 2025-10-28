@@ -24,9 +24,6 @@ public class DocumentServlet extends HttpServlet {
             throws ServletException, IOException {
 
         String path = req.getPathInfo();
-         RequestDispatcher dispatcher
-                    = req.getRequestDispatcher("/reader/SearchingDocumentView.jsp");
-            dispatcher.forward(req, resp);
         if (path != null && path.equals("/searching")) {
             String keyword = req.getParameter("keyword");
             Document[] documents
@@ -34,9 +31,8 @@ public class DocumentServlet extends HttpServlet {
 
             req.setAttribute("documents", documents);
 
-//            RequestDispatcher dispatcher
-//                    = req.getRequestDispatcher("/reader/SearchingDocumentView.jsp");
-//            dispatcher.forward(req, resp);
+            req.getRequestDispatcher("/reader/SearchingDocumentView.jsp")
+                    .forward(req, resp);
         }
 
     }

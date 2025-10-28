@@ -86,7 +86,7 @@
         <div class="error">Tên đăng nhập hoặc mật khẩu không đúng!</div>
     <% } %>
 
-    <form action="LoginServlet" method="post">
+    <form action="/ex1/login" method="post">
         <div class="form-group">
             <label for="username">Tên đăng nhập</label>
             <input type="text" id="username" name="username" placeholder="Nhập tên đăng nhập" required>

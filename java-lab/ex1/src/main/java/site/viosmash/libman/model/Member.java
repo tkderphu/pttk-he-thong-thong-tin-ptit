@@ -16,7 +16,18 @@ public class Member {
     private String dateOfBirth;
     private String fullName;
     private String address;
+    private String role;
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+    
+    
+    
     public int getId() {
         return id;
     }
