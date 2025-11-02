@@ -13,7 +13,7 @@
                 response.sendRedirect("login.jsp");
             } else {
                 if (role.equals("MANAGER")) {
-                    response.sendRedirect("/ex1/manager/ManagerHomeView.jsp");
+                    response.sendRedirect("/ex1/manager/ManagerView.jsp");
                 } else if (role.equals("READER")) {
                     response.sendRedirect("/ex1/reader/ReaderHomeView.jsp");
                 }
