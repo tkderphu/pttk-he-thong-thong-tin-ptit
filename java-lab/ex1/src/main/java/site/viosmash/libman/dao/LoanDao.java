@@ -85,7 +85,9 @@ public class LoanDao extends Dao {
                     }
                 }
 
-                if (loan != null) loan.setLoanDetails(details.toArray(new LoanDetail[0]));
+                if (loan != null) {
+                    loan.setLoanDetails(details.toArray(new LoanDetail[0]));
+                }
                 return loan;
             }
         } catch (SQLException e) {
@@ -134,7 +136,7 @@ public class LoanDao extends Dao {
                     librarian.setPhoneNumber(rs.getString("librarian_phone"));
                     librarian.setAddress(rs.getString("librarian_address"));
                     loan.setLibrarian(librarian);
-                    
+
                     loans.add(loan);
                 }
             }

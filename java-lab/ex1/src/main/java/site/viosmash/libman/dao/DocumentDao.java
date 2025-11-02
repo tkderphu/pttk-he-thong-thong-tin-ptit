@@ -12,10 +12,10 @@ public class DocumentDao extends Dao {
     }
 
     public Document[] getListByKeyword(String keyword) {
-        // Use UPPER() to ignore case
-        String sql = "SELECT id, title, description, author, publisher, category " +
-                     "FROM tblDocument " +
-                     "WHERE UPPER(title) LIKE UPPER(?) OR UPPER(description) LIKE UPPER(?)";
+        String sql = "SELECT id, title, description, "
+                + "author, publisher, category "
+                + "FROM tblDocument "
+                + "WHERE UPPER(title) LIKE UPPER(?) OR UPPER(description) LIKE UPPER(?)";
         List<Document> documents = new ArrayList<>();
 
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -36,7 +36,9 @@ public class DocumentDao extends Dao {
     }
 
     public Document getById(int documentId) {
-        String sql = "SELECT id, title, description, author, publisher, category FROM tblDocument WHERE id = ?";
+        String sql = "SELECT id, title, description, "
+                + "author, publisher, category "
+                + "FROM tblDocument WHERE id = ?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, documentId);
             try (ResultSet rs = ps.executeQuery()) {

@@ -4,11 +4,8 @@
  */
 package site.viosmash.libman.model;
 
-/**
- *
- * @author Nguyen Quang Phu
- */
-public class Reader extends Member{
+public class Reader extends Member {
+
     private String readerId;
 
     public String getReaderId() {

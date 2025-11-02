@@ -1,6 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="site.viosmash.libman.dao.DocumentDao" %>
-<%@ page import="site.viosmash.libman.dao.ItemDao" %>
 <%@ page import="site.viosmash.libman.model.Document" %>
 <%@ page import="site.viosmash.libman.model.Item" %>
 <%@ page import="java.util.List" %>

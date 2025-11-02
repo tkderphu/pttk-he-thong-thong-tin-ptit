@@ -3,7 +3,7 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Trang chủ bạn đọc</title>
+    <title>Libman - Trang chủ bạn đọc</title>
     <style>
         /* Reset & Base */
         * {
@@ -26,7 +26,7 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             padding: 40px 60px;
             text-align: center;
-            width: 380px;
+            width: 500px;
             animation: fadeIn 0.5s ease;
         }
 
@@ -81,20 +81,16 @@
 <body>
     <div class="container">
         <h2>Trang chủ bạn đọc</h2>
-
         <%
             String fullName = (String) request.getSession().getAttribute("fullName");
             if (fullName == null || fullName.trim().isEmpty()) {
                 fullName = "Người dùng";
             }
         %>
-
         <div class="greeting">Xin chào, <strong><%= fullName %></strong>!</div>
-
         <form action="SearchingDocumentView.jsp" method="get">
             <button type="submit" class="btn">🔍 Tìm kiếm tài liệu</button>
         </form>
-
         <footer>Thư viện điện tử - 2025</footer>
     </div>
 </body>

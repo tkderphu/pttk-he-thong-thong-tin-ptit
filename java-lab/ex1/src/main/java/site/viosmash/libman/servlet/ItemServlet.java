@@ -25,14 +25,16 @@ public class ItemServlet extends HttpServlet {
     private ItemDao itemDao;
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
+            throws ServletException, IOException {
         String pathInfo = req.getPathInfo();
         if(pathInfo.equals("/getListByDocumentId")) {
             int documentId = Integer.parseInt(req.getParameter("documentId"));
 
             Item[] items = itemDao.getListByDocumentId(documentId);
             req.setAttribute("items", items);
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/reader/DocumentDetailsView.jsp");
+            RequestDispatcher requestDispatcher = req
+                    .getRequestDispatcher("/reader/DocumentDetailsView.jsp");
             requestDispatcher.forward(req, resp);
         }
     }

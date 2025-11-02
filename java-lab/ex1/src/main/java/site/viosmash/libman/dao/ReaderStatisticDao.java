@@ -12,22 +12,23 @@ import site.viosmash.libman.model.ReaderStatistic;
 public class ReaderStatisticDao extends Dao {
 
     public ReaderStatistic[] getList(Date start, Date end) {
-        String sql = 
-            "SELECT " +
-            "    r.readerId AS reader_id, " +
-            "    m.id AS member_id, " +
-            "    m.username, " +
-            "    m.fullName, " +
-            "    m.phoneNumber, " +
-            "    m.dateOfBirth, " +
-            "    m.address, " +
-            "    COUNT(l.id) AS countLoan " +
-            "FROM tblLoan l " +
-            "JOIN tblReader r ON l.tblReaderid = r.readerId " +
-            "JOIN tblMember m ON r.tblMemberid = m.id " +
-            "WHERE l.loanDate BETWEEN ? AND ? " +
-            "GROUP BY r.readerId, m.id, m.username, m.fullName, m.phoneNumber, m.dateOfBirth, m.address " +
-            "ORDER BY countLoan DESC";
+        String sql
+                = "SELECT "
+                + "    r.readerId AS reader_id, "
+                + "    m.id AS member_id, "
+                + "    m.username, "
+                + "    m.fullName, "
+                + "    m.phoneNumber, "
+                + "    m.dateOfBirth, "
+                + "    m.address, "
+                + "    COUNT(l.id) AS countLoan "
+                + "FROM tblLoan l "
+                + "JOIN tblReader r ON l.tblReaderid = r.readerId "
+                + "JOIN tblMember m ON r.tblMemberid = m.id "
+                + "WHERE l.loanDate BETWEEN ? AND ? "
+                + "GROUP BY r.readerId, m.id, m.username, m.fullName, "
+                + "m.phoneNumber, m.dateOfBirth, m.address "
+                + "ORDER BY countLoan DESC";
 
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setDate(1, start);
