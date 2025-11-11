@@ -7,7 +7,7 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Chi tiết độc giả mượn</title>
+    <title>Libman - Chi tiết độc giả mượn</title>
     <style>
         body {
             font-family: "Segoe UI", Arial, sans-serif;
@@ -63,7 +63,7 @@
             border-radius: 8px;
             padding: 15px 25px;
             margin-bottom: 30px;
-            display: flex;
+            /*display: flex;*/
             justify-content: space-between;
             line-height: 1.8;
             font-size: 15px;

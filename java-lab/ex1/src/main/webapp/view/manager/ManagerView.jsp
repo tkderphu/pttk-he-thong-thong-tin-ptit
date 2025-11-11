@@ -1,9 +1,9 @@
-<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Libman - Xem báo cáo</title>
+    <title>Libman - Trang chủ quản lý</title>
     <style>
         /* Reset & Base */
         * {
@@ -26,15 +26,20 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             padding: 40px 60px;
             text-align: center;
-            position: relative;
             width: 500px;
             animation: fadeIn 0.5s ease;
         }
 
-        h1 {
+        h2 {
             color: #1e3a8a;
             font-weight: bold;
-            margin-bottom: 30px;
+            margin-bottom: 10px;
+        }
+
+        .greeting {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 25px;
         }
 
         .btn {
@@ -46,32 +51,12 @@
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin: 10px 0;
         }
 
         .btn:hover {
             background-color: #2563eb;
             transform: translateY(-2px);
             box-shadow: 0 3px 6px rgba(0,0,0,0.15);
-        }
-
-        .back {
-            background-color: #e5e7eb;
-            color: #111827;
-            border: none;
-            padding: 10px 25px;
-            font-size: 15px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: absolute;
-            top: 10px;
-            left: 10px;
-        }
-
-        .back:hover {
-            background-color: #d1d5db;
-            transform: translateY(-1px);
         }
 
         footer {
@@ -94,19 +79,19 @@
     </style>
 </head>
 <body>
-    
-
     <div class="container">
-        <form action="/ex1/manager/ManagerView.jsp" method="get">
-        <button type="submit" class="back">← Quay lại</button>
-    </form>
-        <h1 style="margin-top: 20px">Xem báo cáo</h1>
-
-        <form action="/ex1/manager/ReaderReportByLoanCountView.jsp" method="get">
-            <button type="submit" class="btn">Thống kê độc giả theo lượt mượn</button>
+        <h2>Trang chủ quản lý</h2>
+        <%
+            String fullName = (String) request.getSession().getAttribute("fullName");
+            if (fullName == null || fullName.trim().isEmpty()) {
+                fullName = "Quản lý";
+            }
+        %>
+        <div class="greeting">Xin chào, <strong><%= fullName %></strong>!</div>
+        <form action="/ex1/view/manager/ReportView.jsp" method="get">
+            <button type="submit" class="btn">📊 Xem báo cáo</button>
         </form>
-
-        <footer>Hệ thống thư viện - 2025</footer>
+        <footer>Hệ thống quản lý thư viện - 2025</footer>
     </div>
 </body>
 </html>

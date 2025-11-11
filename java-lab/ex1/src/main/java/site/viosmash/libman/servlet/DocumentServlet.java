@@ -31,7 +31,7 @@ public class DocumentServlet extends HttpServlet {
 
             req.setAttribute("documents", documents);
 
-            req.getRequestDispatcher("/reader/SearchingDocumentView.jsp")
+            req.getRequestDispatcher("/view/reader/SearchingDocumentView.jsp")
                     .forward(req, resp);
         }
 

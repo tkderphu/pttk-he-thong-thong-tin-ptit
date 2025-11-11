@@ -169,7 +169,7 @@
     <body>
         <div class="container">
             <div class="top-bar">
-                <form action="/ex1/manager/ReportView.jsp" method="get">
+                <form action="/ex1/view/manager/ReportView.jsp" method="get">
                     <button class="btn secondary">⬅ Quay lại</button>
                 </form>
             </div>
@@ -180,11 +180,15 @@
                 <div class="form-row">
                     <div>
                         <label>Từ ngày</label><br>
-                        <input type="date" name="start" value="<%= request.getParameter("start")%>" required>
+                        <input type="date" name="start" 
+                               value="<%= request.getParameter("start")%>" 
+                               required>
                     </div>
                     <div>
                         <label>Đến ngày</label><br>
-                        <input type="date" name="end" value="<%= request.getParameter("end")%>" required>
+                        <input type="date" name="end" 
+                               value="<%= request.getParameter("end")%>" 
+                               required>
                     </div>
                 </div>
                 <div style="text-align:center;">
@@ -250,7 +254,8 @@
                         <td><%= r.getCountLoan()%></td>
                         <td>
                             <form action="/ex1/loans/readerLoanDetail" method="get">
-                                <input type="hidden" name="readerId" value="<%= r.getReaderId()%>">
+                                <input type="hidden" name="readerId" 
+                                       value="<%= r.getReaderId()%>">
                                 <button type="submit" class="btn">Chi tiết</button>
                             </form>
                         </td>
@@ -259,7 +264,8 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="2" style="text-align:right;">Tổng trong trang này</td>
+                        <td colspan="2" style="text-align:right;">
+                            Tổng trong trang này</td>
                         <td colspan="2"><%= pageTotal%> lượt mượn</td>
                     </tr>
                 </tfoot>
@@ -267,7 +273,9 @@
 
             <div class="pagination">
                 <% if (currentPage > 1) {%>
-                <a href="?page=<%= currentPage - 1%>&start=<%= request.getParameter("start")%>&end=<%= request.getParameter("end")%>">&lt;</a>
+                <a href="?page=<%= currentPage - 1%>&start=
+                   <%= request.getParameter("start")%>&end=
+                   <%= request.getParameter("end")%>">&lt;</a>
                 <% } %>
 
                 <%
@@ -278,18 +286,23 @@
                 <% if (i == currentPage) {%>
                 <span class="active"><%= i%></span>
                 <% } else {%>
-                <a href="?page=<%= i%>&start=<%= request.getParameter("start")%>&end=<%= request.getParameter("end")%>"><%= i%></a>
+                <a href="?page=<%= i%>&start=
+                   <%= request.getParameter("start")%>&end=
+                   <%= request.getParameter("end")%>"><%= i%></a>
                 <% } %>
                 <% } %>
 
                 <% if (currentPage < totalPages) {%>
-                <a href="?page=<%= currentPage + 1%>&start=<%= request.getParameter("start")%>&end=<%= request.getParameter("end")%>">&gt;</a>
+                <a href="?page=<%= currentPage + 1%>&start=
+                   <%= request.getParameter("start")%>&end=
+                   <%= request.getParameter("end")%>">&gt;</a>
                 <% } %>
             </div>
 
             <% } else { %>
-            <p style="text-align:center; margin-top:20px;">Không có dữ liệu thống kê trong khoảng thời gian này.</p>
-            <% }%>
+            <p style="text-align:center; margin-top:20px;">
+                Không có dữ liệu thống kê trong khoảng thời gian này.</p>
+                <% }%>
 
             <footer>Hệ thống thư viện Libman - 2025</footer>
         </div>

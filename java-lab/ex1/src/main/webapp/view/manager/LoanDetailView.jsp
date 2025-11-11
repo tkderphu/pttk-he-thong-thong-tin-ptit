@@ -166,7 +166,8 @@
         <p><strong>Mã phiếu mượn:</strong> <%= loan.getId() %></p>
         <p><strong>Ngày mượn:</strong> <%= loan.getLoanDate() %></p>
         <p><strong>Hạn trả:</strong> <%= loan.getDueDate() %></p>
-        <p><strong>Ngày trả:</strong> <%= loan.getReturnDate() != null ? loan.getReturnDate() : "Chưa trả" %></p>
+        <p><strong>Ngày trả:</strong> <%= loan.getReturnDate() != null 
+                ? loan.getReturnDate() : "null" %></p>
         <p><strong>Trạng thái:</strong> <%= loan.getStatus() %></p>
     </div>
 

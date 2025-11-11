@@ -34,7 +34,7 @@ public class ItemServlet extends HttpServlet {
             Item[] items = itemDao.getListByDocumentId(documentId);
             req.setAttribute("items", items);
             RequestDispatcher requestDispatcher = req
-                    .getRequestDispatcher("/reader/DocumentDetailsView.jsp");
+                    .getRequestDispatcher("/view/reader/DocumentDetailsView.jsp");
             requestDispatcher.forward(req, resp);
         }
     }

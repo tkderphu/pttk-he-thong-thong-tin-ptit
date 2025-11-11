@@ -36,9 +36,9 @@ public class AuthServlet extends HttpServlet {
             session.setAttribute("fullName", member.getFullName());
             session.setAttribute("role", member.getRole());
             if(member.getRole().equals("MANAGER")) {
-                response.sendRedirect("/ex1/manager/ManagerView.jsp");
+                response.sendRedirect("/ex1/view/manager/ManagerView.jsp");
             } else if(member.getRole().equals("READER")) {
-                response.sendRedirect("/ex1/reader/ReaderHomeView.jsp");
+                response.sendRedirect("/ex1/view/reader/ReaderHomeView.jsp");
             }
         } else {
             response.sendRedirect("login.jsp?error=true");

@@ -153,7 +153,7 @@
     <body>
         <div class="container">
             <div class="top-bar">
-                <form action="/ex1/reader/ReaderHomeView.jsp" 
+                <form action="/ex1/view/reader/ReaderHomeView.jsp" 
                       method="get" style="margin:0;">
                     <button type="submit" class="btn">
                         ⬅ Quay lại

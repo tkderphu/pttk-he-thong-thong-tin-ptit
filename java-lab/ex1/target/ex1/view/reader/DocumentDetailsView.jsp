@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
+    <meta cha   rset="UTF-8">
     <title>Chi tiết tài liệu</title>
     <style>
         * {

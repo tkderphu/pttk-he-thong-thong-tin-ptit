@@ -27,13 +27,13 @@ public class LoanServlet extends HttpServlet {
             String readerId = (req.getParameter("readerId"));
             Loan[] loans = loanDao.getListByReaderId(readerId);
             req.setAttribute("loans", loans);
-            req.getRequestDispatcher("/manager/ReaderLoanDetailView.jsp")
+            req.getRequestDispatcher("/view/manager/ReaderLoanDetailView.jsp")
                     .forward(req, resp);
         } else if (pathInfo != null && pathInfo.equals("/loanDetail")) {
             int loanId = Integer.parseInt(req.getParameter("loanId"));
             Loan loan = loanDao.getById(loanId);
             req.setAttribute("loan", loan);
-            req.getRequestDispatcher("/manager/LoanDetailView.jsp")
+            req.getRequestDispatcher("/view/manager/LoanDetailView.jsp")
                     .forward(req, resp);
         }
     }

@@ -39,7 +39,7 @@ public class ReaderStatisticServlet extends HttpServlet {
             req.setAttribute("statistics", statistics);
 
             RequestDispatcher requestDispatcher = req
-                    .getRequestDispatcher("/manager/ReaderReportByLoanCountView.jsp");
+                    .getRequestDispatcher("/view/manager/ReaderReportByLoanCountView.jsp");
             requestDispatcher.forward(req, resp);
         }
     }
